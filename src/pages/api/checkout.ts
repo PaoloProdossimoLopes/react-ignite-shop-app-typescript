@@ -18,6 +18,6 @@ export default async function handle(request: NextApiRequest, response: NextApiR
   })
 
   return response.status(201).json({
-    checkoutUrl: checkoutSession.url
+    checkoutUrl: checkoutSession.url,
   })
 }
