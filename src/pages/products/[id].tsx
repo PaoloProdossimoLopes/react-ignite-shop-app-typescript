@@ -2,6 +2,7 @@ import { stripe } from '@/lib/stripe'
 import { ImageContainer, ProductContainer, ProductDetail } from '@/styles/pages/product'
 import axios from 'axios'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
 import Stripe from 'stripe'
@@ -37,22 +38,27 @@ export default function Product({ product }: ProductProps) {
   }
 
   return (
-    <ProductContainer>
-      <ImageContainer>
-        <Image src={product.imageUrl} width={360} height={400} alt='' />
-      </ImageContainer>
+    <>
+      <Head>
+        <title>{product.name} | Ignite shop</title>
+      </Head>
+      <ProductContainer>
+        <ImageContainer>
+          <Image src={product.imageUrl} width={360} height={400} alt='' />
+        </ImageContainer>
 
-      <ProductDetail>
-        <h1>{product.name}</h1>
-        <span>{product.price}</span>
+        <ProductDetail>
+          <h1>{product.name}</h1>
+          <span>{product.price}</span>
 
-        <p>{product.description}</p>
+          <p>{product.description}</p>
 
-        <button onClick={handleByProduct} disabled={isCreatingCheckoutSession}>
-          comprar agora
-        </button>
-      </ProductDetail>
-    </ProductContainer>
+          <button onClick={handleByProduct} disabled={isCreatingCheckoutSession}>
+            comprar agora
+          </button>
+        </ProductDetail>
+      </ProductContainer>
+    </>
   )
 }
 
